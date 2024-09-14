@@ -12,15 +12,10 @@ import {
 
 import Logo from "../components/common/logo";
 import Footer from "../components/common/footer";
-import NavBar from "../components/common/navBar";
-import Article from "../components/homepage/article";
-import Works from "../components/homepage/works";
 import AllProjects from "../components/projects/allProjects";
 
 import INFO from "../data/user";
 import SEO from "../data/seo";
-import myArticles from "../data/articles";
-
 import "./styles/homepage.css";
 
 const Homepage = () => {
@@ -58,6 +53,13 @@ const Homepage = () => {
 
 	const currentSEO = SEO.find((item) => item.page === "home");
 
+	const scrollToTop = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth"
+		});
+	};
+
 	const logoStyle = {
 		display: "flex",
 		position: stayLogo ? "fixed" : "relative",
@@ -66,6 +68,7 @@ const Homepage = () => {
 		border: stayLogo ? "1px solid white" : "none",
 		borderRadius: stayLogo ? "50%" : "none",
 		boxShadow: stayLogo ? "0px 4px 10px rgba(0, 0, 0, 0.25)" : "none",
+		cursor: "pointer" // Add this to indicate it's clickable
 	};
 
 	return (
@@ -80,13 +83,14 @@ const Homepage = () => {
 			</Helmet>
 
 			<div className="page-content">
-				<NavBar active="home" />
 				<div className="content-wrapper">
 					<div className="homepage-logo-container">
-						<div style={logoStyle}>
+						<div style={logoStyle} onClick={scrollToTop}>
 							<Logo width={logoSize} link={false} />
 						</div>
 					</div>
+
+					<div className="homepage-name">Mubeen Ansari</div>
 
 					<div className="homepage-container">
 						<div className="homepage-first-area">
@@ -99,7 +103,6 @@ const Homepage = () => {
 									{INFO.homepage.description}
 								</div>
 							</div>
-
 							<div className="homepage-first-area-right-side">
 								<div className="homepage-image-container">
 									<div className="homepage-image-wrapper">
@@ -168,29 +171,6 @@ const Homepage = () => {
 
 						<div className="homepage-projects">
 							<AllProjects />
-						</div>
-
-						<div className="homepage-after-title">
-							<div className="homepage-articles">
-								{myArticles.map((article, index) => (
-									<div
-										className="homepage-article"
-										key={(index + 1).toString()}
-									>
-										<Article
-											key={(index + 1).toString()}
-											date={article().date}
-											title={article().title}
-											description={article().description}
-											link={"/article/" + (index + 1)}
-										/>
-									</div>
-								))}
-							</div>
-
-							<div className="homepage-works">
-								<Works />
-							</div>
 						</div>
 
 						<div className="page-footer">

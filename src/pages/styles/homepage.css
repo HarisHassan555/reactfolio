@@ -4,7 +4,7 @@
 	display: flex;
 	justify-content: left;
 	align-items: center;
-	padding-top: 130px;
+	padding-top: 70px; /* Reduce this value to half of what it was before */
 }
 
 .homepage-container {
@@ -147,4 +147,19 @@
 		margin-left: -25px;
 		margin-right: -25px;
 	}
+}
+
+.homepage-name {
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 42px;
+	font-weight: 900;
+	font-family: 'Roboto', sans-serif;
+	color: var(--primary-color);
+	text-align: center;
+	z-index: 1000;
+	text-transform: uppercase;
+	letter-spacing: 1px; /* Reduced from 2px to 1px */
 }
